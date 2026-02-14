@@ -68,6 +68,7 @@
         color: #ff6f91;
         font-weight: 600;
         width: 300px;
+        font-size: 16px; /* fixed font size */
     }
 
     .final-message {
@@ -143,14 +144,9 @@ function noClicked() {
         noBtn.onclick = yesClicked;
     }
 
-    // Gradually adjust button sizes
+    // Gradually adjust yes button size
     const yesBtn = document.querySelector(".yes-btn");
     yesBtn.style.width = `${60 + noIndex * 15}px`; // grows
-    const noBtn = document.querySelector(".no-btn");
-    if(noBtn) noBtn.style.width = `${300 - noIndex * 12}px`; // shrinks
-
-    // Animate font size of no button
-    if(noBtn) noBtn.style.fontSize = `${16 + noIndex}px`;
 
     noIndex++;
 }
