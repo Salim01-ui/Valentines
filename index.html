@@ -3,263 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Prank</title>
+<title>Valentine Fun Page</title>
 <style>
-  /* Reset default margins/padding */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
 
-  body {
-    font-family: 'Comic Sans MS', cursive;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+        font-family: 'Quicksand', sans-serif;
+        text-align: center;
+    }
 
-  .card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 20px 15px 40px 15px;
-    width: 90%;
-    max-width: 360px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    position: relative;
-    overflow: hidden;
-  }
+    h1 {
+        font-family: 'Pacifico', cursive;
+        font-size: 2rem;
+        color: #fff;
+        margin-bottom: 10px;
+        animation: fadeIn 1s ease-in;
+    }
 
-  #questionText {
-    color: #ff4d6d;
-    font-size: 20px;
-    margin-bottom: 30px;
-    transition: transform 0.3s ease;
-  }
+    p {
+        font-style: italic;
+        color: #fff;
+        margin-bottom: 20px;
+    }
 
-  .buttons {
-    position: relative;
-    height: 140px;
-  }
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 80%;
+        max-width: 400px;
+    }
 
-  button {
-    border: none;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    user-select: none;
-  }
+    button {
+        border: none;
+        border-radius: 25px;
+        padding: 15px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: all 0.5s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        text-align: center;
+        word-wrap: break-word;
+    }
 
-  /* Tiny Yes button */
-  #yesBtnSmall {
-    background: #ff4d6d;
-    color: white;
-    border-radius: 25px;
-    padding: 10px 16px;
-    font-size: 14px;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    z-index: 20;
-  }
+    .yes-btn {
+        background: #ff6f91;
+        color: white;
+        width: 60px;
+        align-self: flex-start;
+    }
 
-  /* Large Yes button grows gradually */
-  #yesBtnLarge {
-    background: #ff4d6d;
-    color: white;
-    border-radius: 25px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    opacity: 0.8;
-    z-index: 5;
-  }
+    .no-btn {
+        background: #fff;
+        color: #ff6f91;
+        font-weight: 600;
+        width: 300px;
+    }
 
-  /* No button */
-  #noBtn {
-    background: #f8cdda;
-    color: #333;
-    font-size: 18px;
-    width: 220px;
-    height: 70px;
-    border-radius: 35px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
+    .final-message {
+        color: #fff;
+        font-size: 1.5rem;
+        padding: 20px;
+        animation: fadeIn 2s ease-in;
+    }
 
-  /* Popups */
-  .popup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: 50;
-  }
-
-  .popup.show {
-    display: flex;
-    opacity: 1;
-  }
-
-  .popup-content {
-    background: #fff;
-    padding: 25px 20px;
-    border-radius: 20px;
-    text-align: center;
-    width: 90%;
-    max-width: 360px;
-    animation: pop 0.4s ease;
-    font-size: 16px;
-    color: #333;
-  }
-
-  @keyframes pop {
-    0% { transform: scale(0.5); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 400px) {
-    #questionText { font-size: 18px; }
-    #noBtn { width: 180px; height: 60px; font-size: 16px; }
-    #yesBtnSmall { padding: 8px 14px; font-size: 12px; }
-  }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
 </style>
 </head>
 <body>
 
-<div class="card" id="mainCard">
-  <h1 id="questionText">Will you be my Valentine, Vunti? 💖</h1>
-  <div class="buttons">
-    <button id="noBtn">No 🙄</button>
-    <button id="yesBtnSmall">Yes 💕</button>
-    <button id="yesBtnLarge"></button>
-  </div>
-</div>
+<h1 id="question">Will you be my valentines Vunti?</h1>
+<p>No select garni option xaina hai</p>
 
-<div class="popup" id="noPopup">
-  <div class="popup-content">
-    <h1>Jiskeko hau. Sachikai no thichexa. Aba nathich hai tya. Let's try this again.</h1>
-  </div>
-</div>
-
-<div class="popup" id="finalPopup">
-  <div class="popup-content">
-    <h2>You did it! 😍💘</h2>
-    <p>You did it! Now you are stuck with me since always 😂. Happy Valentines my love ❤️, my princess 👸, my vunti 😍, my sigane 🤧, my kuchi puchi ku 🤗💘</p>
-  </div>
+<div class="buttons" id="buttons">
+    <button class="yes-btn" onclick="yesClicked()">Yes</button>
+    <button class="no-btn" onclick="noClicked()">No</button>
 </div>
 
 <script>
-const noBtn = document.getElementById("noBtn");
-const yesBtnSmall = document.getElementById("yesBtnSmall");
-const yesBtnLarge = document.getElementById("yesBtnLarge");
-const mainCard = document.getElementById("mainCard");
-const questionText = document.getElementById("questionText");
-const noPopup = document.getElementById("noPopup");
-const finalPopup = document.getElementById("finalPopup");
-
-let noClicks = 0;
-
-// Original 17 No reactions
-const originalNoReactions = [
-  "no thichis vani ta sigane",
-  "Yes thichana vaneko.",
-  "K khaixeuuuuuuuuuu. Kina no thichekooooooooo.",
-  "Khurukka yes thichna vaneko.",
-  "10 ganxu.",
-  "1!",
-  "2!",
-  "9!",
-  "sawa nau!",
-  "sade nau!",
-  "paune 10!",
-  "paune das!",
-  "da..",
-  "da..",
-  "hya yes thichna vaneko.",
-  "Natra galama tokxu.",
-  "Chal, aba yes lai try gar 🤭"
+const noResponses = [
+    "No thichis vani ta sigane",
+    "Yes thichana vaneko.",
+    "K khaixeuuuuuuuuuu. Kina no thichekooooooooo.",
+    "Khurukka yes thichna vaneko.",
+    "10 ganxu.",
+    "1!",
+    "2!",
+    "9!",
+    "sawa nau!",
+    "sade nau!",
+    "paune 10!",
+    "paune das!",
+    "da..",
+    "da..",
+    "hya yes thichna vaneko.",
+    "Natra galama tokxu.",
+    "Yes ta ali najik nai thiyo ta 😏",
+    "No thichne ho ki ramailo garne? 😂",
+    "Mero mutu yes thichana 💓",
+    "Last chance to click yes"
 ];
 
-// Final 4 No reactions
-const finalNoReactions = [
-  "Yes ta ali najik nai thiyo ta 😏",
-  "No thichne ho ki ramailo garne? 😂",
-  "Mero mutu yes thichana 💓",
-  "Last chance to click yes"
-];
+let noIndex = 0;
 
-noBtn.addEventListener("click", () => {
-  noClicks++;
+// Yes button click handler
+function yesClicked() {
+    const body = document.body;
+    body.innerHTML = `<div class="final-message">Awwwwww my cutie 🥰 Thank you for being my valentine. Now you're are stuck with me forever since always 😂. My princess 👸, my vunti 🤗, my kuchi puchi ku 🥰</div>`;
+}
 
-  // First click → popup
-  if (noClicks === 1) {
-    mainCard.style.display = "none";
-    noPopup.classList.add("show");
-    setTimeout(() => {
-      noPopup.classList.remove("show");
-      mainCard.style.display = "flex";
-    }, 5000);
-    return;
-  }
+// No button click handler
+function noClicked() {
+    if(noIndex === 0){
+        // First no click shows popup
+        alert("Seriously 😒 No ko option ta dekhaunalai po rakheko ta. Aba yes garni tya 😒");
+    } else if (noIndex < noResponses.length - 1) {
+        // Show next funny no response
+        const noBtn = document.querySelector(".no-btn");
+        noBtn.innerText = noResponses[noIndex];
+    } else {
+        // Second last no click - change no button to yes final
+        const noBtn = document.querySelector(".no-btn");
+        noBtn.innerText = "Okay fine 😅 Yes garnu parcha!";
+        noBtn.classList.add("yes-btn");
+        noBtn.classList.remove("no-btn");
+        noBtn.onclick = yesClicked;
+    }
 
-  // Determine reaction
-  let reaction = "";
-  if (noClicks <= 17) reaction = originalNoReactions[noClicks - 2];
-  else if (noClicks <= 21) reaction = finalNoReactions[noClicks - 18];
+    // Gradually adjust button sizes
+    const yesBtn = document.querySelector(".yes-btn");
+    yesBtn.style.width = `${60 + noIndex * 15}px`; // grows
+    const noBtn = document.querySelector(".no-btn");
+    if(noBtn) noBtn.style.width = `${300 - noIndex * 12}px`; // shrinks
 
-  // Move No button
-  if (noClicks < 22) {
-    const offsetX = Math.random() * 140 - 70;
-    const offsetY = Math.random() * 80 - 40;
-    const width = Math.max(50, 220 - noClicks*7);
-    const height = Math.max(40, 70 - noClicks*3);
-    const radius = Math.floor(Math.random()*50)+15;
-    const color = `hsl(${Math.floor(Math.random()*360)}, 70%, 80%)`;
-    noBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-    noBtn.style.width = width+"px";
-    noBtn.style.height = height+"px";
-    noBtn.style.borderRadius = radius+"px";
-    noBtn.style.backgroundColor = color;
-    noBtn.innerText = reaction;
-  }
+    // Animate font size of no button
+    if(noBtn) noBtn.style.fontSize = `${16 + noIndex}px`;
 
-  // Move question slightly up
-  if (noClicks >= 4) {
-    questionText.style.transform = `translateY(-${Math.min((noClicks-3)*6, 30)}px)`;
-  }
-
-  // Grow large Yes button
-  const scale = 0.3 + noClicks*0.15;
-  yesBtnLarge.style.width = Math.min(scale*360, 360)+"px";
-  yesBtnLarge.style.height = Math.min(scale*200, 200)+"px";
-  yesBtnLarge.style.opacity = 0.8;
-  yesBtnLarge.style.zIndex = 5;
-
-  // Final No click → remove No button, enable large Yes button
-  if (noClicks === 22) {
-    noBtn.style.display = "none";
-    yesBtnLarge.style.width = "360px";
-    yesBtnLarge.style.height = "200px";
-    yesBtnLarge.style.top = "0";
-    yesBtnLarge.style.left = "0";
-    yesBtnLarge.style.zIndex = 15;
-  }
-});
-
-// Click Yes button → show final popup
-yesBtnSmall.addEventListener("click", () => { finalPopup.style.display = "flex"; });
-yesBtnLarge.addEventListener("click", () => { finalPopup.style.display = "flex"; });
+    noIndex++;
+}
 </script>
+
 </body>
 </html>
