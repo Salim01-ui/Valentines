@@ -5,92 +5,102 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine Fun Page</title>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Pacifico&display=swap');
 
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, #ffafbd, #ffc3a0);
-        font-family: 'Quicksand', sans-serif;
-        text-align: center;
-    }
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Quicksand', sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
 
-    h1 {
-        font-family: 'Pacifico', cursive;
-        font-size: 2rem;
-        color: #fff;
-        margin-bottom: 10px;
-        animation: fadeIn 1s ease-in;
-    }
+.section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.5s ease;
+}
 
-    p {
-        font-style: italic;
-        color: #fff;
-        margin-bottom: 20px;
-    }
+#top-section {
+    background: linear-gradient(135deg, #ff4d6d, #ff8091); /* Valentine red theme */
+}
 
-    .buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        width: 80%;
-        max-width: 400px;
-    }
+#middle-section {
+    flex: 0.6;
+    background: #ffd1dc; /* soft pink for question */
+    color: #ff3a5b;
+    font-size: 1.8rem;
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    padding: 10px;
+    transition: background 0.5s ease, color 0.5s ease;
+}
 
-    button {
-        border: none;
-        border-radius: 25px;
-        padding: 15px;
-        cursor: pointer;
-        font-size: 1rem;
-        font-weight: bold;
-        transition: all 0.5s ease;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        text-align: center;
-        word-wrap: break-word;
-    }
+#bottom-section {
+    background: #fff;
+    flex-direction: column;
+    gap: 15px;
+}
 
-    .yes-btn {
-        background: #ff6f91;
-        color: white;
-        width: 60px;
-        align-self: flex-start;
-    }
+button {
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    word-wrap: break-word;
+    padding: 15px;
+}
 
-    .no-btn {
-        background: #fff;
-        color: #ff6f91;
-        font-weight: 600;
-        width: 300px;
-        font-size: 16px; /* fixed font size */
-    }
+.yes-btn {
+    background: #ff1a3c;
+    color: #fff;
+    width: 60px;
+    font-size: 16px;
+}
 
-    .final-message {
-        color: #fff;
-        font-size: 1.5rem;
-        padding: 20px;
-        animation: fadeIn 2s ease-in;
-    }
+.no-btn {
+    width: 95%;
+    max-width: 350px;
+    background: #ffe4e6;
+    color: #ff1a3c;
+    font-size: 16px;
+    font-weight: 500;
+}
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-20px);}
-        to { opacity: 1; transform: translateY(0);}
-    }
+.final-message {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 20px;
+    animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(-20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
 </style>
 </head>
 <body>
 
-<h1 id="question">Will you be my valentines Vunti?</h1>
-<p>No select garni option xaina hai</p>
-
-<div class="buttons" id="buttons">
+<div id="top-section" class="section">
     <button class="yes-btn" onclick="yesClicked()">Yes</button>
+</div>
+
+<div id="middle-section" class="section">
+    Will you be my valentines Vunti?<br>
+    <span style="font-style: italic; font-size: 0.9rem; color:#a6002e;">No select garni option xaina hai</span>
+</div>
+
+<div id="bottom-section" class="section">
     <button class="no-btn" onclick="noClicked()">No</button>
 </div>
 
@@ -120,33 +130,47 @@ const noResponses = [
 
 let noIndex = 0;
 
+// Playful color palette for no button
+const noColors = [
+    "#ffe4e6","#ffc2d1","#ff9db3","#ff8091","#ff4d6d","#ff1a3c","#ff3a5b","#ff5b77","#ff8091","#ff99a6",
+    "#ffb3b8","#ffccd1","#ffe0e6","#ffccd1","#ffb3b8","#ff99a6","#ff8091","#ff5b77","#ff3a5b","#ff1a3c"
+];
+
 // Yes button click handler
 function yesClicked() {
-    const body = document.body;
-    body.innerHTML = `<div class="final-message">Awwwwww my cutie 🥰 Thank you for being my valentine. Now you're are stuck with me forever since always 😂. My princess 👸, my vunti 🤗, my kuchi puchi ku 🥰</div>`;
+    document.body.innerHTML = `<div class="final-message">Awwwwww my cutie 🥰 Thank you for being my valentine. Now you're are stuck with me forever since always 😂. My princess 👸, my vunti 🤗, my kuchi puchi ku 🥰</div>`;
 }
 
 // No button click handler
 function noClicked() {
+    const noBtn = document.querySelector(".no-btn");
+    const topSection = document.getElementById("top-section");
+    const middleSection = document.getElementById("middle-section");
+
     if(noIndex === 0){
-        // First no click shows popup
         alert("Seriously 😒 No ko option ta dekhaunalai po rakheko ta. Aba yes garni tya 😒");
     } else if (noIndex < noResponses.length - 1) {
-        // Show next funny no response
-        const noBtn = document.querySelector(".no-btn");
         noBtn.innerText = noResponses[noIndex];
     } else {
-        // Second last no click - change no button to yes final
-        const noBtn = document.querySelector(".no-btn");
         noBtn.innerText = "Okay fine 😅 Yes garnu parcha!";
         noBtn.classList.add("yes-btn");
         noBtn.classList.remove("no-btn");
         noBtn.onclick = yesClicked;
     }
 
-    // Gradually adjust yes button size
+    // Gradually grow Yes button
     const yesBtn = document.querySelector(".yes-btn");
-    yesBtn.style.width = `${60 + noIndex * 15}px`; // grows
+    yesBtn.style.width = `${60 + noIndex * 15}px`;
+
+    // Change No button colors playfully to show frustration
+    if(noIndex < noColors.length){
+        noBtn.style.background = noColors[noIndex];
+        noBtn.style.color = "#fff";
+        middleSection.style.background = noColors[noIndex]+"33"; // transparent tint
+    }
+
+    // Slight top section background variation
+    topSection.style.background = `linear-gradient(135deg, #ff4d6d, ${noColors[noIndex] || "#ff8091"})`;
 
     noIndex++;
 }
