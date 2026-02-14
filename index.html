@@ -22,16 +22,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     transition: background 0.5s ease;
 }
 
 #top-section {
-    background: linear-gradient(135deg, #ff4d6d, #ff8091); /* Valentine red theme */
+    background: linear-gradient(135deg, #ff4d6d, #ff8091);
+    overflow: hidden;
 }
 
 #middle-section {
     flex: 0.6;
-    background: #ffd1dc; /* soft pink for question */
+    background: #ffd1dc;
     color: #ff3a5b;
     font-size: 1.8rem;
     font-family: 'Pacifico', cursive;
@@ -67,6 +69,8 @@ button {
     color: #fff;
     width: 60px;
     font-size: 16px;
+    position: relative;
+    z-index: 2;
 }
 
 .no-btn {
@@ -76,6 +80,8 @@ button {
     color: #ff1a3c;
     font-size: 16px;
     font-weight: 500;
+    position: relative;
+    z-index: 1;
 }
 
 .final-message {
@@ -85,9 +91,33 @@ button {
     animation: fadeIn 1.5s ease-in;
 }
 
+/* Fade in */
 @keyframes fadeIn {
     from {opacity:0; transform:translateY(-20px);}
     to {opacity:1; transform:translateY(0);}
+}
+
+/* Heart floating */
+.heart {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% {transform: translateY(0) scale(1); opacity:1;}
+    100% {transform: translateY(-120vh) scale(1.3); opacity:0;}
+}
+
+/* Shake animation for No button */
+@keyframes shake {
+  0% { transform: translateX(0px); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+  100% { transform: translateX(0px); }
 }
 </style>
 </head>
@@ -132,11 +162,27 @@ const noResponses = [
 
 let noIndex = 0;
 
-// Playful color palette for no button background
+// Playful color palette for No button background
 const noColors = [
     "#ffe4e6","#ffc2d1","#ff9db3","#ff8091","#ff4d6d","#ff1a3c","#ff3a5b","#ff5b77","#ff8091","#ff99a6",
     "#ffb3b8","#ffccd1","#ffe0e6","#ffccd1","#ffb3b8","#ff99a6","#ff8091","#ff5b77","#ff3a5b","#ff1a3c"
 ];
+
+// Function to generate floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerText = "❤️";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = 12 + Math.random()*24 + "px";
+    heart.style.animationDuration = 4 + Math.random()*3 + "s";
+    document.getElementById("top-section").appendChild(heart);
+
+    setTimeout(()=>heart.remove(), 7000); // remove after animation
+}
+
+// Generate hearts every 500ms
+setInterval(createHeart, 500);
 
 // Yes button click handler
 function yesClicked() {
@@ -178,19 +224,22 @@ function noClicked() {
         noBtn.onclick = yesClicked;
     }
 
-    // Gradually grow Yes button
+    // Yes button grows
     const yesBtn = document.querySelector(".yes-btn");
     yesBtn.style.width = `${60 + noIndex * 15}px`;
 
-    // Change No button colors playfully to show frustration
+    // Change No button color playfully
     if(noIndex < noColors.length){
         noBtn.style.background = noColors[noIndex];
         noBtn.style.color = "#fff";
-        middleSection.style.background = noColors[noIndex]+"33"; // semi-transparent for middle
+        middleSection.style.background = noColors[noIndex]+"33";
     }
 
-    // Slight top section background variation
     topSection.style.background = `linear-gradient(135deg, #ff4d6d, ${noColors[noIndex] || "#ff8091"})`;
+
+    // Shake No button
+    noBtn.style.animation = "shake 0.5s";
+    noBtn.addEventListener("animationend", ()=>noBtn.style.animation="");
 
     noIndex++;
 }
