@@ -14,7 +14,6 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Quicksand', sans-serif;
-    color: #fff;
     overflow: hidden;
 }
 
@@ -45,6 +44,10 @@ body {
     background: #fff;
     flex-direction: column;
     gap: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 button {
@@ -86,7 +89,6 @@ button {
     from {opacity:0; transform:translateY(-20px);}
     to {opacity:1; transform:translateY(0);}
 }
-
 </style>
 </head>
 <body>
@@ -130,7 +132,7 @@ const noResponses = [
 
 let noIndex = 0;
 
-// Playful color palette for no button
+// Playful color palette for no button background
 const noColors = [
     "#ffe4e6","#ffc2d1","#ff9db3","#ff8091","#ff4d6d","#ff1a3c","#ff3a5b","#ff5b77","#ff8091","#ff99a6",
     "#ffb3b8","#ffccd1","#ffe0e6","#ffccd1","#ffb3b8","#ff99a6","#ff8091","#ff5b77","#ff3a5b","#ff1a3c"
@@ -138,7 +140,25 @@ const noColors = [
 
 // Yes button click handler
 function yesClicked() {
-    document.body.innerHTML = `<div class="final-message">Awwwwww my cutie 🥰 Thank you for being my valentine. Now you're are stuck with me forever since always 😂. My princess 👸, my vunti 🤗, my kuchi puchi ku 🥰</div>`;
+    document.body.innerHTML = `
+    <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background: linear-gradient(135deg, #ff4d6d, #ff8091);
+        text-align:center;
+        padding:20px;
+        color:#fff;
+        font-family:'Pacifico', cursive;
+        font-size:1.6rem;
+        line-height:1.5;
+    ">
+        Awwwwww my cutie 🥰<br>
+        Thank you for being my valentine.<br>
+        Now you're stuck with me forever since always 😂<br>
+        My princess 👸, my vunti 🤗, my kuchi puchi ku 🥰
+    </div>`;
 }
 
 // No button click handler
@@ -166,7 +186,7 @@ function noClicked() {
     if(noIndex < noColors.length){
         noBtn.style.background = noColors[noIndex];
         noBtn.style.color = "#fff";
-        middleSection.style.background = noColors[noIndex]+"33"; // transparent tint
+        middleSection.style.background = noColors[noIndex]+"33"; // semi-transparent for middle
     }
 
     // Slight top section background variation
