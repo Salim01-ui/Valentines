@@ -23,9 +23,10 @@
     width: 360px;
     position: relative;
     transition: all 0.3s ease;
+    overflow: hidden;
   }
 
-  h1 { color: #ff4d6d; }
+  h1 { color: #ff4d6d; margin: 0; }
   .buttons { margin-top: 20px; position: relative; height: 120px; }
 
   button {
@@ -35,6 +36,7 @@
     transition: all 0.3s ease;
   }
 
+  /* Tiny Yes button - always clickable */
   #yesBtnSmall {
     background: #ff4d6d;
     color: white;
@@ -46,9 +48,10 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
-    z-index: 2;
+    z-index: 20;
   }
 
+  /* Large Yes button - grows gradually */
   #yesBtnLarge {
     background: #ff4d6d;
     color: white;
@@ -59,9 +62,10 @@
     width: 0;
     height: 0;
     opacity: 0.8;
-    z-index: 0;
+    z-index: 5;
   }
 
+  /* No button */
   #noBtn {
     background: #ccc;
     color: black;
@@ -70,8 +74,13 @@
     width: 220px;
     height: 80px;
     border-radius: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
   }
 
+  /* Popups */
   .popup {
     display: none;
     position: fixed;
@@ -143,7 +152,7 @@ let noClicks = 0;
 
 // 17 original No reactions (first updated)
 const originalNoReactions = [
-  "no thichis vani ta sigane",  // updated first reaction
+  "no thichis vani ta sigane",
   "Yes thichana vaneko.",
   "K khaixeuuuuuuuuuu. Kina no thichekooooooooo.",
   "Khurukka yes thichna vaneko.",
@@ -177,7 +186,6 @@ noBtn.addEventListener("click", () => {
   if (noClicks === 1) {
     mainCard.style.display = "none";
     noPopup.classList.add("show");
-
     setTimeout(() => {
       noPopup.classList.remove("show");
       mainCard.style.display = "flex";
@@ -218,16 +226,16 @@ noBtn.addEventListener("click", () => {
   yesBtnLarge.style.width = `${Math.min(scale*360, 360)}px`;
   yesBtnLarge.style.height = `${Math.min(scale*200, 200)}px`;
   yesBtnLarge.style.opacity = 0.8;
-  yesBtnLarge.style.zIndex = 0;
+  yesBtnLarge.style.zIndex = 5;
 
-  // On final No click, remove No button and make Yes buttons fully clickable
+  // On final No click, remove No button and make large Yes fully clickable
   if (noClicks === 22) {
     noBtn.style.display = "none";
     yesBtnLarge.style.width = "360px";
     yesBtnLarge.style.height = "200px";
     yesBtnLarge.style.top = "0";
     yesBtnLarge.style.left = "0";
-    yesBtnLarge.style.zIndex = 1;
+    yesBtnLarge.style.zIndex = 15;
   }
 });
 
@@ -242,4 +250,3 @@ yesBtnLarge.addEventListener("click", () => {
 
 </body>
 </html>
-
